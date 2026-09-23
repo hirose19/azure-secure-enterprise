@@ -50,3 +50,24 @@ Verified using Azure CLI:
 These checks verify configuration, not live connectivity.
 No application workloads have been deployed, so connection testing has not yet been performed.
 
+## Hub VNet and Peering
+
+Hub VNet: vnet-orion-hub-dev-eus-01
+Hub address space: 10.10.0.0/16
+
+The hub and spoke address spaces do not overlap.
+
+Local VNet  |   Peering Name    | Remote VNet   |   Verified State
+Hub           peer-hub-to-spoke     Spoke           Connected
+Spoke         peer-spoke-to-hub     Hub             Connected
+
+VNet access is enabled on both peering configurations.
+Peering provides private network connectivity, but NSG rules still apply.
+
+The data subnet only allows new inbound connections from the app subnet on TPC 1433. New connections from the hub are denied by the priority 200 rule.
+
+Peering is not transitive. Adding another spoke connected to the hub would not automatically provide connectivity between the two spokes.
+
+Both peering states were verified using Azure CLI. Workload connectivity has not been tested because no VMs have been deployed.
+
+The VNets themselves are free. Traffic transferred through VNet peering is billed by data volume.
