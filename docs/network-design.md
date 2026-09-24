@@ -71,3 +71,43 @@ Peering is not transitive. Adding another spoke connected to the hub would not a
 Both peering states were verified using Azure CLI. Workload connectivity has not been tested because no VMs have been deployed.
 
 The VNets themselves are free. Traffic transferred through VNet peering is billed by data volume.
+
+## Private DNS
+
+Created the private DNS zone orion.internal
+
+VNet    |   Link name   |   Autoregistration    |   Verified State
+Spoke    link-orion-spoke       Disabled                Complete
+Hub      Link-orion-hub         Disabled                Complete
+
+BOth links make the zone available for name resolution from theor respective VNets when using Azure-provided DNS. Autoregistration is disabled because we manage the DNS records manually
+
+### DNS Record
+
+Name                |   Type    |   IP Address
+app.orion.internal       A          10.20.20.10
+
+The IP is an example address. No VM has been deployed at that address.
+Creating the DNS record does not create a VM or reserve its IP.
+
+### Connectivity Requirements
+
+DNS resolves the name to an IP address. Peering provides a network path between the hub and spoke. NSGs independently control which connections are permitted
+
+A hub VM could resolve this record using the linked zone, but our app NSG would deny a new connection from the hub to TCP 8080 because the allow rule only permits the web subnet as its source.
+
+### Verification
+
+Azure CLI confirmed:
+- The private DNS zone exists.
+- Both VNet links show Completed
+- Autoregistration is disabled on both links
+- The app A record points to 10.20.20.10
+
+These are configuration checks. Live DNS resolution application connectivity have not been tested from a VM
+
+### Cost and Cleanup Plan
+Private DNS incurs zone-hosting and query charges.
+After documenting the exercise, remove the two DNS VNet Links and the private DNS zone to limit ongoing cost. Keep the VNets, peering, and NSGs for later labs
+
+Cleanup completed: removed the DNS VNet links and deleted orion.internal, including its app A record. Azure CLI confirmed the zone no longer exists. The VNets, peering, and NSGs remain.
