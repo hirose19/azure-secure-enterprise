@@ -137,7 +137,33 @@ The existing tier NSGs do not filter traffic at this private endpoints.
 
 Inspected the approved endpoint, private IP, DNS record, VNet link, and disabled public network access in the Azure portal.
 
-These checks verify configuration. Live DNS resolution, private connectivity, and authorized blob access from a workload have not yet been tested
+### Live Test Results
+
+A temporary Ubuntu VM, vm-orion-test-dev-eus-01, was deployed in snet-app. Its system-assigned managed identity received Storage Blob Data Contributor at the lab storage account scope.
+
+Tests ran inside the VM using Azure Run command
+
+Test                                 |           Observed result
+Resolve storage hostname                Returned private endpoint IP 10.20.40.4
+HTTPS request without credentials       Remote IP 10.20.40.4; HTTP 409
+Create lab-test container using-
+manage-identity                         HTTP 201
+Upload connectivity-test.txt            HTTP 201
+Download connectivity-test.txt          HTTP 200
+Compare uploaded and downloaded-
+content                                 PASS: exact match
+
+The unauthenticated HTTP 409 demonstrated an HTTPS response, not authorized access. The authenticated upload and download demonstrated successful data access using the VM's identity
+
+The VM used a public IP for outbound connectivity with no public inbound ports opened. Storage public network access remained disabled.
+
+![Live private DNS lookup](images/06-vm-private-dns-test.jpg)
+
+![HTTPS response through private IP](images/07-vm-private-https-test.jpg)
+
+![Successful managed identity upload and download](images/08-managed-identity-blob-test.jpg)
+
+![VM storage role assignment](images/09-vm-storage-role-assignment.jpg)
 
 ### Deployment Evidence
 
@@ -148,3 +174,4 @@ These checks verify configuration. Live DNS resolution, private connectivity, an
 ### Resource Lifecycle
 
 The storage account, private endpoint, and private DNS zone are currently deployed. Cleanup has not yet been performed.
+
