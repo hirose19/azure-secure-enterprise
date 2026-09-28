@@ -111,3 +111,40 @@ Private DNS incurs zone-hosting and query charges.
 After documenting the exercise, remove the two DNS VNet Links and the private DNS zone to limit ongoing cost. Keep the VNets, peering, and NSGs for later labs
 
 Cleanup completed: removed the DNS VNet links and deleted orion.internal, including its app A record. Azure CLI confirmed the zone no longer exists. The VNets, peering, and NSGs remain.
+
+## Blobl Storage Private Endpoint
+
+Created storage account storiondevblob01 with Standard performance and locally redundant storage (LRS)
+
+Public network access and anonymous blob access are disabled.
+Scure transfer is enabled with minimum TLS version 1.2
+
+### Private Connectivity
+
+- Target service: Block Storage
+- VNet: vet-orion-spoke-dev-eus-01
+- Subnet: snet-private-endpoints (10.20.40.0/24)
+- Private endpoint IP: 10.20.40.4
+- Connection status: Approved
+- Private DNS zone: privatelink.blob.core.windows.net
+- A record: storiondevblob01 -> 10.20.40.4
+- Spoke DNS VNet link: Completed
+
+Private endpoint network policies are disabled on the endpoint subnet.
+The existing tier NSGs do not filter traffic at this private endpoints.
+
+### Verification and Limitations
+
+Inspected the approved endpoint, private IP, DNS record, VNet link, and disabled public network access in the Azure portal.
+
+These checks verify configuration. Live DNS resolution, private connectivity, and authorized blob access from a workload have not yet been tested
+
+### Deployment Evidence
+
+![Private endpoint DNS configuration](images/04-blob-private-endpoint-dns.jpg)
+
+![Storage public network access disabled](images/05-storage-public-access-disabled.jpg)
+
+### Resource Lifecycle
+
+The storage account, private endpoint, and private DNS zone are currently deployed. Cleanup has not yet been performed.
