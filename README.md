@@ -39,13 +39,21 @@ The spoke VNet contains separate web, application, and data subnets.
 
 The app NSG allows inbound TCP 8080 from the web subnet at priority 100 and denies other inbound traffic at priority 200.
 
-![Application NSG inbound rules](docs/images/02-app-nsg-inbound-rules.png.jpg)
+![Application NSG inbound rules](docs/images/02-app-nsg-inbound-rules.jpg)
 
 ### Hub-Spoke Peering
 
 The spoke-to-hub peering shows Connected.
 
-![Connected spoke-to-hub peering](docs/images/03-spoke-to-hub-peering.png.jpg)
+![Connected spoke-to-hub peering](docs/images/03-spoke-to-hub-peering.jpg)
 
 These screenshots demonstrate deployed configuration.
 Live workload connectivity testing has not yet been performed.
+
+## Private Endpoint Lab
+
+Configured private access to Azure Blob Storage with public network access disabled. Verifed the endpoint approval, private IP, DNS record, and spoke VNet link.
+
+[View configuration details and screenshots](docs/network-design.md#blobl-storage-private-endpoint)
+
+Live workload connectivity and authorized blob access have not yet been tested.
