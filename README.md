@@ -26,3 +26,26 @@ It will not contain employer, customer, or government information.
 ### Current Status
 
 The repository is initialized. Infrastructure deployment has not started.
+
+## Network Deployment Evidence
+
+### Spoke Subnetes
+
+The spoke VNet contains separate web, application, and data subnets.
+
+![Spoke subnet configuration](docs/images/01-spoke-subnets.jpg)
+
+### Application-Tier Security Rules
+
+The app NSG allows inbound TCP 8080 from the web subnet at priority 100 and denies other inbound traffic at priority 200.
+
+![Application NSG inbound rules](docs/images/02-app-nsg-inbound-rules.png.jpg)
+
+### Hub-Spoke Peering
+
+The spoke-to-hub peering shows Connected.
+
+![Connected spoke-to-hub peering](docs/images/03-spoke-to-hub-peering.png.jpg)
+
+These screenshots demonstrate deployed configuration.
+Live workload connectivity testing has not yet been performed.
