@@ -56,4 +56,4 @@ Configured private access to Azure Blob Storage with public network access disab
 
 [View configuration details and screenshots](docs/network-design.md#blobl-storage-private-endpoint)
 
-Live workload connectivity and authorized blob access have not yet been tested.
+Live test verified private DNS resolution, HTTPS connectivity, and successful blob upload/download using the VM's managed identity.
