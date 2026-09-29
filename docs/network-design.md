@@ -173,5 +173,10 @@ The VM used a public IP for outbound connectivity with no public inbound ports o
 
 ### Resource Lifecycle
 
-The storage account, private endpoint, and private DNS zone are currently deployed. Cleanup has not yet been performed.
+Cleanup complete and verified on September 29, 2026.
+
+Removed the temporary test VM, OS disk, network interfaces, public IP, SSH public key resource, Blob private endpoint, storage account with its test data, and private DNS zone.
+
+An Azure CLI resource inventory confirmed that only the two VNets and three NSGs remain in rg-orion-dev-eus-01
+Their subnets and hub-spoke peering were retianed for later labs.
 
