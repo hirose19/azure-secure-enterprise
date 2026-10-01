@@ -57,3 +57,11 @@ Configured private access to Azure Blob Storage with public network access disab
 [View configuration details and screenshots](docs/network-design.md#blobl-storage-private-endpoint)
 
 Live test verified private DNS resolution, HTTPS connectivity, and successful blob upload/download using the VM's managed identity.
+
+## Identity and RBAC Lab
+
+Configured a user-assigned managed identity with Reader access at the lab resource-group scope.
+
+Live tests confirmed that reading resource-group properties successded (HTTP 200), while changing a tag was denied (HTTP 403, AuthrorizationFailed),
+
+[View the access maxtrix, test evidence and cleanup](docs/rbac-matrix.md)
