@@ -65,3 +65,11 @@ Configured a user-assigned managed identity with Reader access at the lab resour
 Live tests confirmed that reading resource-group properties successded (HTTP 200), while changing a tag was denied (HTTP 403, AuthrorizationFailed),
 
 [View the access maxtrix, test evidence and cleanup](docs/rbac-matrix.md)
+
+## Key Vault Lab
+
+Configured an Azure RBAC-enabled Key Vault with access restricted to my client IP. Created and read a synthetic secret, then deleted and recovered it using soft delete.
+
+Verified that recovery preserved the secret value.
+
+[View configuration, recovery evidence, and cleanup status](docs/key-vault.md)
