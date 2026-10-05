@@ -73,3 +73,10 @@ Configured an Azure RBAC-enabled Key Vault with access restricted to my client I
 Verified that recovery preserved the secret value.
 
 [View configuration, recovery evidence, and cleanup status](docs/key-vault.md)
+
+### Azure Policy: Required Tag Audit
+
+Created a custom Audit policy to detect resources missing an environment tag.
+Tested non-compliance, corrected the tags, and verified all eight evaluated resources became compliant.
+
+[Configuration, test results, and screenshots](docs/azure-policy.md)
