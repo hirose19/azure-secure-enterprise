@@ -80,3 +80,9 @@ Created a custom Audit policy to detect resources missing an environment tag.
 Tested non-compliance, corrected the tags, and verified all eight evaluated resources became compliant.
 
 [Configuration, test results, and screenshots](docs/azure-policy.md)
+
+### Threat Model
+
+Reviewed five lab threates, their controls, remaining risks, and supporting evidence. Distinguished tested controls from proposed improvements.
+
+[Read the threat model](docs/threat-model.md)
