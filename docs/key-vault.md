@@ -66,4 +66,11 @@ Value preservation was checked manually.
 
 ## Cleanup Status
 
-Pending. The vault, recovered fake secret, Client-IP firewall rule, and may vault-scope Secrets Officer assignement remain configured.
+- Deleted kv-orion-dev-eus-01 after completing the synthetic-sercret lab.
+- Confirmed the vault appeared under Manage deleted vaults.
+- Left the vault soft-deleted without recovering or purging it.
+- Deleted the unused Azure SSH public key resource key-orion-rbac-test-dev-eus-01.
+- Retained the hub and spoke VNets, three NSGs, and user-assigned managed identity.
+- Retained the Azure Policy audit definition and assignment.
+
+Screenshots and test results remain in this repository as evidence of the completed lab.
